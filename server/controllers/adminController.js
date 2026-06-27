@@ -345,6 +345,16 @@ const getDashboardStats = async (req, res) => {
     });
   }
 };
+const deleteStaff = async (req, res) => {
+  try {
+    const staff = await User.findByIdAndDelete(req.params.id);
+    if (!staff) return res.status(404).json({ success: false, message: 'Staff not found' });
+    res.status(200).json({ success: true, message: 'Staff deleted' });
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Server Error' });
+  }
+};
+
 
 module.exports = {
   getAllRequests,
@@ -355,4 +365,5 @@ module.exports = {
   getAllUsers,
   createStaff,
   getDashboardStats,
+  deleteStaff,
 };

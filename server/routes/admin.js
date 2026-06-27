@@ -1,15 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {
-  getAllRequests,
-  verifyRequest,
-  rejectRequest,
-  assignStaff,
-  getAllStaff,
-  getAllUsers,
-  createStaff,
-  getDashboardStats,
-} = require('../controllers/adminController');
+const { getAllRequests, verifyRequest, rejectRequest, assignStaff, getAllStaff, getAllUsers, createStaff, getDashboardStats, deleteStaff } = require('../controllers/adminController');
 const { protect, authorize } = require('../middleware/auth');
 
 // All routes are protected and for admin only
@@ -29,5 +20,5 @@ router.put('/assign/:id', assignStaff);
 router.get('/staff', getAllStaff);
 router.get('/users', getAllUsers);
 router.post('/create-staff', createStaff);
-
+router.delete('/staff/:id', deleteStaff);
 module.exports = router;

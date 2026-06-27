@@ -1,13 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {
-  raiseRequest,
-  supportRequest,
-  getMyRequests,
-  getRequestDetails,
-  verifyCompletion,
-  getActiveRequests,
-} = require('../controllers/studentController');
+const { raiseRequest, supportRequest, getMyRequests, getRequestDetails, verifyCompletion, getActiveRequests, updateProfile } = require('../controllers/studentController');
 const { protect, authorize } = require('../middleware/auth');
 const upload = require('../middleware/upload');
 
@@ -32,5 +25,6 @@ router.get('/request/:id', getRequestDetails);
 
 // Verify completion (rate and close or reopen)
 router.put('/verify/:id', verifyCompletion);
+router.put('/profile', updateProfile);
 
 module.exports = router;
